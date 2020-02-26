@@ -11,6 +11,7 @@ class UserInterface
     end
     print "\n"
   end
+
   def self.ask_move(player)
     puts "Enter move for player #{player[:id]}"
     return gets.chomp
@@ -32,15 +33,33 @@ end
 puts 'Hello World!'
 
 player1 = {
-  id: 1
+  id: 1,
+  sign: 'O'
 }
 
-board = [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+player2 = {
+  id: 2,
+  sign: 'X'
+}
 
-UserInterface.display_board(board)
+board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
-move = UserInterface.ask_move(player1)
+current_player = player1
+puts UserInterface.display_board(board)
 
+loop do
 
-answer = UserInterface.repeat_match
-puts answer
+  5.times do 
+    move = UserInterface.ask_move(current_player)
+    # the game decides wether it's a valid move and changes the board accordingly
+    UserInterface.display_board(board)
+    current_player = current_player == player1 ? player2 : player1
+  end
+
+  #assuming player 1 wins
+  UserInterface.output_message("Congratulations player 1, you win!")
+
+  keep_playing = UserInterface.repeat_match()
+  break unless keep_playing
+
+end
