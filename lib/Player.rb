@@ -1,11 +1,12 @@
 require '../bin/main.rb'
 
 class Player
-  attr_reader :id
+  attr_reader :id, :character
   attr_accessor :score
 
-  def initialize(id)
+  def initialize(id, character)
     @id = id
     @score = 0
+    @character = character
   end
 end
