@@ -68,19 +68,30 @@ class Board
     false
   end
 
-  def board_completed?(player)
-    return true if check_win_rows?(player) || check_win_columns?(player)
+  def board_full?
+    @cells.each do |row|
+      row.each do |element|
+        return false if element.is_a?(Integer)
+      end
+    end
+    return true
+  end
 
-    return true if check_win_main_diagonal?(player) || check_win_reverse_diagonal?(player)
+  def board_completed(player)
+    return 1 if check_win_rows?(player) || check_win_columns?(player)
 
-    false
+    return 1 if check_win_main_diagonal?(player) || check_win_reverse_diagonal?(player)
+
+    return 2 if board_full?
+
+    0
   end
 
   def valid_move?(position)
     return (position > 0)  && (position <= @cells.length**2) && position.is_a?(Integer)
   end
 
-  def apply_move(char, position)
+  def apply_move?(char, position)
     return false unless valid_move?(position)
     attemp_row = (position / @cells.length).floor
     attemp_row -= 1 if (position % @cells.length).zero?
