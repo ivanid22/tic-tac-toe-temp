@@ -1,19 +1,20 @@
-require_relative '../bin/main.rb'
+# require_relative '../bin/main.rb'
 require_relative 'player.rb'
 require_relative 'board.rb'
 
 class Match
-  include UserInterface
+  # include UserInterface
 
-  def initialize(players)
+  def initialize(players,ui)
     @players = players
     @current_player  = players[0]
-    @board = Board.new
+    @board = Board.new(ui)
+    @ui = ui
   end
 
   def get_move
     loop do
-      move = ask_move(@current_player).to_i
+      move = @ui.ask_move(@current_player).to_i
       break if @board.apply_move?(@current_player.character, move)
     end
   end
@@ -26,11 +27,11 @@ class Match
       @board.display
       case @board.board_completed(@current_player)
         when 1
-          output_message("Congratulations player #{@current_player.id}, you won!")
+          @ui.output_message("Congratulations player #{@current_player.id}, you won!")
           match_finished = true
           @current_player.score += 1
         when 2
-          output_message("Match draw!")
+          @ui.output_message("Match draw!")
           match_finished = true
         when 0
           @current_player = @current_player == @players[0] ? @players[1] : @players[0]

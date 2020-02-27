@@ -1,13 +1,14 @@
-require_relative '../bin/main.rb'
+# require_relative '../bin/main.rb'
 require_relative 'player.rb'
 
 class Board
-  include UserInterface
+  # include UserInterface
   attr_reader :cells
 
-  def initialize
+  def initialize(ui)
     # @cells = [['c', 'b', 'a'], ['d', 'a', 'f'], ['a', 'h', 'c']]
     @cells = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    @ui = ui
   end
 
   def check_win_rows?(player)
@@ -105,6 +106,6 @@ class Board
   end
 
   def display
-    display_board(@cells)
+    @ui.display_board(@cells)
   end
 end

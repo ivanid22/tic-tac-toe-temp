@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require_relative '../lib/game.rb'
 
-module UserInterface
+class UserInterface
   def display_board(board)
     board.each_with_index do |row, j|
       row.each_with_index do |element, i|
@@ -25,7 +25,7 @@ module UserInterface
 
   def display_score(players)
     players.each do |player|
-      puts "Score for player #{player.name} :  #{player.score}"
+      puts "Score for player #{player.id} :  #{player.score}"
     end
   end
 
@@ -43,5 +43,6 @@ module UserInterface
   end
 end
 
-game = Game.new
+ui = UserInterface.new
+game = Game.new(ui)
 game.start
