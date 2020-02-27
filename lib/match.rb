@@ -38,11 +38,3 @@ class Match
     end
   end
 end
-
-player1 = Player.new(1, "O")
-player2 = Player.new(2, "X")
-
-players = [player1, player2]
-
-my_match = Match.new(players)
-my_match.start

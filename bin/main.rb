@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require_relative '../lib/game.rb'
 
 module UserInterface
   def display_board(board)
@@ -12,9 +13,20 @@ module UserInterface
     print "\n"
   end
 
+  def ask_name(idx)
+    puts "Enter name for player #{idx}"
+    return gets.chomp
+  end
+
   def ask_move(player)
     puts "Enter move for player #{player.id}"
     return gets.chomp
+  end
+
+  def display_score(players)
+    players.each do |player|
+      puts "Score for player #{player.name} :  #{player.score}"
+    end
   end
 
   def repeat_match()
@@ -25,42 +37,11 @@ module UserInterface
       return false if input == 'n'
     end
   end
+
   def output_message(message)
     puts message
   end
 end
-=begin
-puts 'Hello World!'
 
-player1 = {
-  id: 1,
-  sign: 'O'
-}
-
-player2 = {
-  id: 2,
-  sign: 'X'
-}
-
-board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-
-current_player = player1
-puts UserInterface.display_board(board)
-
-loop do
-
-  5.times do 
-    move = UserInterface.ask_move(current_player)
-    # the game decides wether it's a valid move and changes the board accordingly
-    UserInterface.display_board(board)
-    current_player = current_player == player1 ? player2 : player1
-  end
-
-  #assuming player 1 wins
-  UserInterface.output_message("Congratulations player 1, you win!")
-
-  keep_playing = UserInterface.repeat_match()
-  break unless keep_playing
-
-end
-=end
+game = Game.new
+game.start
