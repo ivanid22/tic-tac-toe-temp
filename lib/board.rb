@@ -1,7 +1,7 @@
-# require_relative '../bin/main.rb'
+require_relative '../bin/main.rb'
 
 class Board
-  # include UserInterface
+  include UserInterface
   attr_reader :cells
 
   def initialize
@@ -75,8 +75,19 @@ class Board
 
     false
   end
+
+  def apply_move(char, position)
+    attemp_row = (position / @cells.length).floor
+    attemp_row -= 1 if (position % @cells.length).zero?
+    attemp_move = @cells[attemp_row][position % @cells.length - 1]
+    if attemp_move.is_a?(Integer)
+      @cells[attemp_row][position % @cells.length - 1] = char
+      return true
+    end
+    false
+  end
+
+  def display
+    display_board(@cells)
+  end
 end
-
-board = Board.new
-
-puts board.board_completed?('a')

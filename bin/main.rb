@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-class UserInterface
-  def self.display_board(board)
+module UserInterface
+  def display_board(board)
     board.each_with_index do |row, j|
       row.each_with_index do |element, i|
         print "#{element}"
@@ -12,12 +12,12 @@ class UserInterface
     print "\n"
   end
 
-  def self.ask_move(player)
+  def ask_move(player)
     puts "Enter move for player #{player[:id]}"
     return gets.chomp
   end
 
-  def self.repeat_match()
+  def repeat_match()
     loop do
       puts 'Play again? (y/n)'
       input = (gets.chomp).downcase
@@ -25,11 +25,11 @@ class UserInterface
       return false if input == 'n'
     end
   end
-  def self.output_message(message)
+  def output_message(message)
     puts message
   end
 end
-
+=begin
 puts 'Hello World!'
 
 player1 = {
@@ -63,3 +63,4 @@ loop do
   break unless keep_playing
 
 end
+=end
