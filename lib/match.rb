@@ -1,7 +1,6 @@
-require '../bin/main.rb'
-require './board.rb'
-require './player.rb'
-
+require_relative '../bin/main.rb'
+require_relative 'player.rb'
+require_relative 'board.rb'
 
 class Match
   include UserInterface
@@ -14,10 +13,9 @@ class Match
 
   def get_move
     loop do
-      move = ask_move(@current_player)
-      break if Board.apply_move?(@current_player.character, move)
+      move = ask_move(@current_player).to_i
+      break if @board.apply_move?(@current_player.character, move)
     end
-    move
   end
 
   def start
@@ -35,7 +33,7 @@ class Match
           output_message("Match draw!")
           match_finished = true
         when 0
-          @current_player = @current_player == player[0] ? player[1] : player[0]
+          @current_player = @current_player == @players[0] ? @players[1] : @players[0]
       end
     end
   end

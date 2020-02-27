@@ -1,4 +1,5 @@
 require_relative '../bin/main.rb'
+require_relative 'player.rb'
 
 class Board
   include UserInterface
@@ -10,7 +11,7 @@ class Board
   end
 
   def check_win_rows?(player)
-    symbol_check = player
+    symbol_check = player.character
     @cells.each do |row|
       return true if row.all?(symbol_check)
     end
@@ -18,7 +19,7 @@ class Board
   end
 
   def check_win_columns?(player)
-    symbol_check = player
+    symbol_check = player.character
     i = 0
     while i < @cells.length
       temp = []
@@ -36,7 +37,7 @@ class Board
 
   def check_win_reverse_diagonal?(player)
     rev_diagonal_arr = []
-    symbol_check = player
+    symbol_check = player.character
     i = 0
     while i < @cells.length
       j = 0
@@ -53,7 +54,7 @@ class Board
 
   def check_win_main_diagonal?(player)
     diagonal_arr = []
-    symbol_check = player
+    symbol_check = player.character
     i = 0
     while i < @cells.length
       j = 0
