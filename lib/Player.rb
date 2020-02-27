@@ -1,4 +1,4 @@
-require '../bin/main.rb'
+require 'main.rb'
 
 class Player
   attr_reader :id, :character
