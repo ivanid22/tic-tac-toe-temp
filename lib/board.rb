@@ -76,7 +76,12 @@ class Board
     false
   end
 
+  def valid_move?(position)
+    return (position > 0)  && (position <= @cells.length**2) && position.is_a?(Integer)
+  end
+
   def apply_move(char, position)
+    return false unless valid_move?(position)
     attemp_row = (position / @cells.length).floor
     attemp_row -= 1 if (position % @cells.length).zero?
     attemp_move = @cells[attemp_row][position % @cells.length - 1]

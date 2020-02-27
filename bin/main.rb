@@ -13,7 +13,7 @@ module UserInterface
   end
 
   def ask_move(player)
-    puts "Enter move for player #{player[:id]}"
+    puts "Enter move for player #{player.id}"
     return gets.chomp
   end
 
