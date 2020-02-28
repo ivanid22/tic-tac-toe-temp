@@ -1,16 +1,16 @@
-# require_relative '../bin/main.rb'
 require_relative 'player.rb'
 require_relative 'board.rb'
 require_relative 'match.rb'
 
 class Game
-  # include UserInterface
   def initialize(ui)
     @game_on = false
     @ui = ui
   end
 
+  public
   def start
+    @ui.output_message "Welcome to Tic-Tac-Toe!"
     @players = []
     player1_name = @ui.ask_name(1)
     @players[0] = Player.new(player1_name,'X')
@@ -25,6 +25,7 @@ class Game
       @game_on = @ui.repeat_match
     end
 
+    @ui.output_message "Game over. Thank you for playing Tic-Tac-Toe!"
   end
 
 end

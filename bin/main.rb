@@ -19,7 +19,7 @@ class UserInterface
   end
 
   def ask_move(player)
-    puts "Enter move for player #{player.id}"
+    puts "Enter move for player #{player.id}. Select the number in the grid where you want to place your move"
     return gets.chomp
   end
 

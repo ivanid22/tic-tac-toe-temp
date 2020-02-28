@@ -1,16 +1,14 @@
-# require_relative '../bin/main.rb'
 require_relative 'player.rb'
 
 class Board
-  # include UserInterface
   attr_reader :cells
 
   def initialize(ui)
-    # @cells = [['c', 'b', 'a'], ['d', 'a', 'f'], ['a', 'h', 'c']]
     @cells = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     @ui = ui
   end
 
+  private
   def check_win_rows?(player)
     symbol_check = player.character
     @cells.each do |row|
@@ -36,6 +34,7 @@ class Board
     false
   end
 
+  
   def check_win_reverse_diagonal?(player)
     rev_diagonal_arr = []
     symbol_check = player.character
@@ -79,6 +78,7 @@ class Board
     return true
   end
 
+  public
   def board_completed(player)
     return 1 if check_win_rows?(player) || check_win_columns?(player)
 

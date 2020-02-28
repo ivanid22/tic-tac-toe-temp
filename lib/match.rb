@@ -1,9 +1,7 @@
-# require_relative '../bin/main.rb'
 require_relative 'player.rb'
 require_relative 'board.rb'
 
 class Match
-  # include UserInterface
 
   def initialize(players,ui)
     @players = players
@@ -12,13 +10,16 @@ class Match
     @ui = ui
   end
 
+  private
   def get_move
     loop do
       move = @ui.ask_move(@current_player).to_i
       break if @board.apply_move?(@current_player.character, move)
+      @ui.output_message('Invalid move, please try again')
     end
   end
 
+  public
   def start
     match_finished = false
     @board.display

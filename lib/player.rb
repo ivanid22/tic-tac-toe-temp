@@ -1,5 +1,3 @@
-# require_relative '../bin/main.rb'
-
 class Player
   attr_reader :id, :character
   attr_accessor :score
