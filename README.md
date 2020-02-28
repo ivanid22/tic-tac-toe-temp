@@ -30,8 +30,8 @@ If you want to stop playing, just enter 'n' when asked if you want to keep playi
 First of all, you need to have the game files in your computer. You can get them by cloning this repository.
 On the command line, navigate to the game directory. Once there, there's two ways to run the game
 
-- Run the game directly from the executable file, using the command './bin/main.rb'
-- Pass the main.rb file to the ruby interpreter, using the command 'ruby bin/main.rb'
+- Run the game directly from the executable file, using the command `./bin/main.rb`
+- Pass the main.rb file to the ruby interpreter, using the command `ruby bin/main.rb`
 
 # Requirements
 
